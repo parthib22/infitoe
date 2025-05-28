@@ -33,7 +33,7 @@ export default function Home() {
 
         // Clone state
         const nextBoard = [...board];
-        let nextQueue = [...queue];
+        const nextQueue = [...queue];
 
         // Tentatively place mark
         nextBoard[index] = symbol;
@@ -67,11 +67,11 @@ export default function Home() {
         setXIsNext(!xIsNext);
     }
 
-    const status = winner
-        ? `Winner: ${winner}`
-        : board.every(cell => cell)
-            ? 'Draw'
-            : `Next ${xIsNext ? 'x' : 'o'}`;
+    // const status = winner
+    //     ? `Winner: ${winner}`
+    //     : board.every(cell => cell)
+    //         ? 'Draw'
+    //         : `Next ${xIsNext ? 'x' : 'o'}`;
 
     return (
         <>
@@ -109,7 +109,7 @@ export default function Home() {
 }
 
 function calculateWinner(squares: string[]): string | null {
-    for (let combo of WIN_COMBINATIONS) {
+    for (const combo of WIN_COMBINATIONS) {
         const [a, b, c] = combo;
         if (
             squares[a] &&
