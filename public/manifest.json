@@ -1,0 +1,20 @@
+{
+    "name": "infitoe - Infinite Tic-Tac-Toe",
+    "short_name": "infitoe",
+    "description": "We fixed tic-tac-toe. No more boring ties, just pure strategy.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f9fafb",
+    "theme_color": "#1e3a8a",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "any",
+            "type": "image/x-icon"
+        }
+    ],
+    "categories": [
+        "games",
+        "entertainment"
+    ]
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://infitoe.vercel.app/sitemap.xml
