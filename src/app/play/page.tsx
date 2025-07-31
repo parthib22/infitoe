@@ -102,6 +102,7 @@ export default function Home() {
             <button
               key={idx}
               onClick={() => handleClick(idx)}
+              aria-label={`cell-${idx}`}
               className={`text-white font-bold w-20 h-20 ${
                 queueX.includes(idx)
                   ? "bg-teal-700"
@@ -122,6 +123,7 @@ export default function Home() {
         </div>
         <button
           onClick={resetGame}
+          aria-label="reset game"
           className="absolute bottom-24 flex justify-center items-center w-16 text-2xl font-light rotate-90 bg-transparent text-blue-950 rounded-full aspect-square hover:bg-gray-100 transition-all duration-300 ease-in-out cursor-pointer"
         >
           <Image
