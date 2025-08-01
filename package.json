@@ -8,6 +8,7 @@
     "dev-next": "next dev --turbopack",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
+    "start:render": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {

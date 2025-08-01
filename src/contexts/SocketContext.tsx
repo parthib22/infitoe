@@ -58,8 +58,21 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   // SOCKET.IO CLIENT CONCEPT #3: Connection Setup
   useEffect(() => {
+    // PRODUCTION READY: Get socket URL from environment variable or fallback
+    const serverUrl = process.env.NEXT_PUBLIC_SOCKET_URL || 
+                     (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+    
+    console.log('Connecting to socket server:', serverUrl);
+    
     // Create Socket.io client connection to our server
-    const socketInstance = io('http://localhost:3000');
+    const socketInstance = io(serverUrl, {
+      // Production optimizations
+      transports: ['websocket', 'polling'], // Fallback for network issues
+      upgrade: true,
+      rememberUpgrade: true,
+      timeout: 20000, // 20 second timeout
+      forceNew: true  // Always create new connection
+    });
 
     // SOCKET.IO EVENT: 'connect' - fired when connection is established
     socketInstance.on('connect', () => {

@@ -1,0 +1,15 @@
+# Render.yaml - Render service configuration
+services:
+  - type: web
+    name: infitoe
+    env: node
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start:render
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_SOCKET_URL
+        fromService:
+          type: web
+          name: infitoe
+          property: host

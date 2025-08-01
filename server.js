@@ -6,8 +6,8 @@ import { Server } from 'socket.io';
 
 // Server configuration
 const dev = process.env.NODE_ENV !== 'production';
-const hostname = 'localhost';
-const port = 3000;
+const hostname = process.env.HOST || 'localhost';
+const port = process.env.PORT || 3000; // Render provides PORT env variable
 
 // Initialize Next.js app
 const app = next({ dev, hostname, port });
@@ -190,8 +190,11 @@ app.prepare().then(() => {
   // SOCKET.IO SETUP: Attach Socket.io to the HTTP server
   const io = new Server(server, {
     cors: {
-      origin: "*",        // Allow connections from any origin (for development)
-      methods: ["GET", "POST"]
+      origin: process.env.NODE_ENV === 'production' 
+        ? ["https://infitoe.onrender.com"] // Replace with your actual Render URL
+        : "*",        // Allow all origins in development
+      methods: ["GET", "POST"],
+      credentials: true
     }
   });
 
@@ -327,7 +330,7 @@ app.prepare().then(() => {
       console.error(err);
       process.exit(1);
     })
-    .listen(port, () => {
+    .listen(port, '0.0.0.0', () => { // Listen on all interfaces for Render
       console.log(`> Ready on http://${hostname}:${port}`);
     });
 });
