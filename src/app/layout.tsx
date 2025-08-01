@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { SocketProvider } from "@/contexts/SocketContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -76,7 +77,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${poppins.className} antialiased`}>
-        <div id="root">{children}</div>
+        <SocketProvider>
+          <div id="root">{children}</div>
+        </SocketProvider>
       </body>
     </html>
   );
